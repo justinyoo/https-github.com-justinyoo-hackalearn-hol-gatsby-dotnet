@@ -1,5 +1,5 @@
 {
-  "name": "hacka-learn-site",
+  "name": "gatsby-app",
   "version": "1.0.0",
   "private": true,
   "description": "HackaLearn Site",
@@ -14,6 +14,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
+  "proxy": "http://localhost:7071/",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",

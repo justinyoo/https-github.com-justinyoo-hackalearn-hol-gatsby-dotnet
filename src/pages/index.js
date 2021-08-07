@@ -1,4 +1,5 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react"
+import fetch from "node-fetch";
 
 // styles
 const pageStyles = {
@@ -127,6 +128,16 @@ const links = [
 
 // markup
 const IndexPage = () => {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    fetch(`/api/posts`)
+      .then(res => res.json())
+      .then(result => {
+        console.log(result.posts)
+        setPosts(result.posts)
+      })
+  }, [])
+
   return (
     <main style={pageStyles}>
       <title>Home Page</title>
@@ -145,6 +156,14 @@ const IndexPage = () => {
           😎
         </span>
       </p>
+      {/* <p>Runtime Data: Star count for the Gatsby repo {starsCount}</p> */}
+      <ul style={listStyles}>
+        {posts.map(post => (
+          <li key={post.id} style={{ ...listItemStyles }}>
+            <a style={linkStyle} href={post.url}>{post.title}</a> at {post.date} by {post.author.name}
+          </li>
+        ))}
+      </ul>
       <ul style={listStyles}>
         <li style={docLinkStyle}>
           <a
